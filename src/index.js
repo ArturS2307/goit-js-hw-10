@@ -60,7 +60,7 @@
 
 import './css/styles.css';
 import debounce from 'lodash.debounce';
-import {ApiRestCountries} from './js/fetchCountries';
+import {ApiRestCountries} from './js/fetchCountries.js';
 import Notiflix from 'notiflix';
 
 const DEBOUNCE_DELAY = 300;
