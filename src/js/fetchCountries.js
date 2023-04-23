@@ -6,7 +6,7 @@ import "notiflix/dist/notiflix-3.2.6.min.css";
 
 class ApiRestCountries {
     constructor() {
-        this.searchQuery = '';
+        this.searchQuery = "";
     }
 
     fetchCountries(){
@@ -28,11 +28,11 @@ class ApiRestCountries {
         }
 
     get query() {
-        return this.searchQuery='';
+        return this.searchQuery;
     }
 
     set query(newQuery) {
-        this.searchQuery=newQuery;
+        this.searchQuery = newQuery;
     }
 }
 

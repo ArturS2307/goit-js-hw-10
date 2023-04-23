@@ -19,11 +19,11 @@ function onInput(e) {
   apiRestCountries.query = e.target.value.trim();
   console.log(apiRestCountries.query);
   apiRestCountries.fetchCountries().then(renderMarkup);
-
   if(apiRestCountries.query === '') {
     clearCountries();
     return;
   }
+  
 }
 
 function clearCountries() {
@@ -40,21 +40,24 @@ function renderMarkup(countries) {
     Notiflix.Notify.info('Too many matches found. Please enter a more specific name.');
     return;
   } else if(countries.length === 1) {
-    markup = countries.map((country) => {return `
+    markup = countries.map(({flags, name, capital, population, languages}) => {return `
     <li>
-      <img src=${country.flags.svg} alt=${country.flags.alt} width = '40'>
-      <h1>${country.name.official}</h1>
-      <p>Capital:<span>${country.capital}</span></p>
-      <p>Population:<span>${country.population}</span></p>
-      <p>Languages:<span>${Object.values(country.languages).join(", ")}</span></p>
+      <div class='flex'>
+      <img src=${flags.svg} alt=${flags.alt} width = '40' height = '30'>
+      <h1>${name.official}</h1></div>
+      <p><span class='bold'>Capital: </span>${capital}</p>
+      <p><span class='bold'>Population: </span>${population}</p>
+      <p><span class='bold'>Languages: </span>${Object.values(languages).join(", ")}</p>
     </li>`;
   }).join('');
     countryList.innerHTML = '';
     countryInfo.innerHTML = markup;
   } else {
-    markup = countries.map((country) => {return `
+    markup = countries.map(({flags, name}) => {return `
     <li>
-      <img src=${country.flags.svg} alt=${country.flags.alt} width = '40'><p>${country.name.official}</p>
+    <div class='flex'>
+      <img src=${flags.svg} alt=${flags.alt} width = '40' height = '30'><p>${name.official}</p>
+    </div>
     </li>
     `}).join('');
     countryList.innerHTML = markup;
