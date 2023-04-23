@@ -42,18 +42,19 @@ function renderMarkup(countries) {
   } else if(countries.length === 1) {
     markup = countries.map((country) => {return `
     <li>
-      <img src=${country.flags.svg} alt=${country.flags.alt} width = '30'><h1>${country.name.official}</h1>
-      <p><span>Capital:</span>${country.capital}</p>
-      <p><span>Population:</span>${country.population}</p>
-      <p><span>Languages:</span>${country.languages}</p>
-    </li>
-    `}).join('');
+      <img src=${country.flags.svg} alt=${country.flags.alt} width = '40'>
+      <h1>${country.name.official}</h1>
+      <p>Capital:<span>${country.capital}</span></p>
+      <p>Population:<span>${country.population}</span></p>
+      <p>Languages:<span>${Object.values(country.languages).join(", ")}</span></p>
+    </li>`;
+  }).join('');
     countryList.innerHTML = '';
     countryInfo.innerHTML = markup;
   } else {
     markup = countries.map((country) => {return `
     <li>
-      <img src=${country.flags.svg} alt=${country.flags.alt} width = '30'><p>${country.name.official}</p>
+      <img src=${country.flags.svg} alt=${country.flags.alt} width = '40'><p>${country.name.official}</p>
     </li>
     `}).join('');
     countryList.innerHTML = markup;
